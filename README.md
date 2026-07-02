@@ -245,7 +245,4 @@ Trong các phiên bản tiếp theo, chúng tôi dự kiến sẽ bổ sung các
 
 ## 📄 Giấy phép (License)
 
-Dự án này được phân phối dưới dạng mã nguồn mở theo **Giấy phép MIT** (MIT License). Bạn hoàn toàn có quyền sử dụng, sửa đổi và phân phối lại mã nguồn cho cả mục đích cá nhân và thương mại. Xem chi tiết tại tệp `LICENSE` (nếu có).
-
----
-*Dự án được xây dựng và đóng gói hoàn thiện bởi **Antigravity AI Assistant** cùng với sự phát triển của **Google DeepMind Team**.*
+Dự án này được phân phối dưới dạng mã nguồn mở theo **Giấy phép MIT** (MIT License). Bạn hoàn toàn có quyền sử dụng, sửa đổi và phân phối lại mã nguồn cho cả mục đích cá nhân và thương mại. Xem chi tiết tại tệp `LICENSE`.
