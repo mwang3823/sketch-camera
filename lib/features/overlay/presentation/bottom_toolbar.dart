@@ -75,6 +75,15 @@ class BottomToolbar extends ConsumerWidget {
                         margin: const EdgeInsets.symmetric(horizontal: 6),
                       ),
 
+                      // Clear Reference Image Button
+                      FloatingIconButton(
+                        icon: Icons.close_rounded,
+                        tooltip: 'Clear Reference Image',
+                        color: Colors.redAccent,
+                        onPressed: () => overlayNotifier.clearImage(),
+                      ),
+                      const SizedBox(width: 8),
+
                       // 3. Mirror Horizontally
                       FloatingIconButton(
                         icon: Icons.flip_outlined,
@@ -124,7 +133,7 @@ class BottomToolbar extends ConsumerWidget {
                       const SizedBox(width: 8),
                     ],
 
-                    // Visual Divider for grid toggle
+                    // Visual Divider for grid/help toggle
                     Container(
                       height: 28,
                       width: 1,
@@ -140,6 +149,14 @@ class BottomToolbar extends ConsumerWidget {
                       tooltip: 'Toggle 3x3 Grid',
                       active: overlayState.isGridVisible,
                       onPressed: () => overlayNotifier.toggleGrid(),
+                    ),
+                    const SizedBox(width: 8),
+
+                    // 8. Help/Instructions Button
+                    FloatingIconButton(
+                      icon: Icons.help_outline_rounded,
+                      tooltip: 'App Instructions',
+                      onPressed: () => _showInfoDialog(context, ref),
                     ),
                   ],
                 ),
@@ -689,6 +706,52 @@ class BottomToolbar extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _showInfoDialog(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Row(
+            children: [
+              Icon(Icons.brush_outlined, color: Colors.blue),
+              SizedBox(width: 10),
+              Text(
+                'Trace Instructions',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          content: const Text(
+            'Secure your phone above your drawing paper, align the image overlay over the camera feed, and start tracing!\n\n'
+            'Gestures Checklist:\n'
+            '• 1 Finger Drag: Translate image.\n'
+            '• 2 Finger Pinch: Zoom and scale.\n'
+            '• 2 Finger Twist: Rotate image.\n'
+            '• Double-Tap: Reset trace alignments.\n'
+            '• Long Press: Lock/Unlock movements.',
+            style: TextStyle(fontSize: 14, height: 1.5),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                ref.read(overlayProvider.notifier).reset();
+                Navigator.of(context).pop();
+              },
+              child: const Text('Reset Alignment'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text(
+                'Dismiss',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
